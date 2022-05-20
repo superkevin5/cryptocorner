@@ -7,7 +7,7 @@ type MyProps = {
 type MyState = {
     count: number; // like this
 };
-export class Hello extends React.Component<MyProps, MyState> {
+export class App extends React.Component<MyProps, MyState> {
     state: MyState = {
         // optional second annotation for better type inference
         count: 0,
