@@ -1,6 +1,14 @@
 import React, { Component, PureComponent } from "react";
+import {IMyComponentRequiredProps} from "../interface/requiredInterface";
 
-type MyProps = {
+
+
+const defaultProps: IMyComponentRequiredProps ={
+    color: "red"
+
+}
+
+type MyProps = typeof defaultProps & {
     // using `interface` is also ok
     message: string;
 };
@@ -20,3 +28,19 @@ export class App extends React.Component<MyProps, MyState> {
         );
     }
 }
+
+//
+// const AppComponent = ({message}: MyProps & typeof defaultProps) => (
+//
+//     <div>{`fdsfsdf ${message}`}</div>
+// );
+//
+//
+// const TestComponent = (props: React.ComponentProps<typeof AppComponent>) => {
+//     return <h1 />;
+// };
+//
+// const el = <TestComponent message="foo" />;
+//
+//
+// AppComponent.defaultProps = defaultProps
