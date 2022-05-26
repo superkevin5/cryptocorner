@@ -9,11 +9,11 @@ module.exports = {
         hot: true,
         port: 9001
     },
-    plugins: [new HtmlWebpackPlugin({
+    plugins: [ new HtmlWebpackPlugin({
         template: "public/index.html",
         hash: true, // cache busting
         filename: '../dist/index.html'
-    })],
+    }) ],
     entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
@@ -25,11 +25,33 @@ module.exports = {
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js", ".json"]
+        extensions: [ ".ts", ".tsx", ".js", ".json" ]
     },
 
     module: {
-        rules: [
+        rules: [ {
+            test: /\.(scss)$/,
+            use: [
+                {
+                loader: 'style-loader', // inject CSS to page
+            },
+                {
+                loader: 'css-loader', // translates CSS into CommonJS modules
+            },
+            {
+                loader: 'postcss-loader', // Run post css actions
+                options: {
+                    plugins: function () { // post css plugins, can be exported to postcss.config.js
+                        return [
+                            require('precss'),
+                            require('autoprefixer')
+                        ];
+                    }
+                }
+            }, {
+                loader: 'sass-loader' // compiles Sass to CSS
+            } ]
+        },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -37,13 +59,20 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
+                use: [ "style-loader", "css-loader" ],
             },
             // All files with a z'.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            {
+                test: /\.tsx?$/,
+                loader: "awesome-typescript-loader"
+            },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }
         ]
     },
 
