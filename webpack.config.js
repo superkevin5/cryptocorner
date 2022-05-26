@@ -14,7 +14,7 @@ module.exports = {
         hash: true, // cache busting
         filename: '../dist/index.html'
     })],
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist"
