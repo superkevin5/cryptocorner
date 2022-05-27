@@ -42,7 +42,7 @@
   "scripts": {
     "dev": "webpack-dev-server --open --hot",
     "start": "webpack-dev-server",
-    "build": "webpack --mode production --progress",
+    "build": "webpack",
     "check-type": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "rimraf dist && webpack --mode production",
