@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>Hello React!</title>
+    <script>
+        if (typeof window.ethereum !== 'undefined') {
+            console.log('MetaMask is installed!');
+        }
+        ethereum.request({ method: 'eth_requestAccounts' });
+    </script>
 </head>
 <body>
 <div id="example"></div>
