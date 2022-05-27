@@ -43,7 +43,9 @@
     "start": "webpack-dev-server",
     "build": "webpack --mode production --progress",
     "check-type": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "rimraf dist && webpack --mode production",
+    "deploy:heroku": "git push heroku master"
   },
   "author": "",
   "license": "ISC"
